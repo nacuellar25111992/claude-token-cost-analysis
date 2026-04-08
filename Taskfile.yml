@@ -1,0 +1,25 @@
+version: "3"
+
+vars:
+  PYTHON: .venv/bin/python3
+
+tasks:
+  run:
+    desc: Correr el análisis de tokens
+    cmds:
+      - "{{.PYTHON}} -m src.script.main"
+
+  test:
+    desc: Correr los tests
+    cmds:
+      - "{{.PYTHON}} -m pytest tests/ -v"
+
+  backfill:
+    desc: Backfill del historial desde una fecha (default 2026-04-01)
+    cmds:
+      - "{{.PYTHON}} -m src.script.backfill"
+
+  lint:
+    desc: Lintear el código con ruff
+    cmds:
+      - "{{.PYTHON}} -m ruff check --fix src/ tests/"
